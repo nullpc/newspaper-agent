@@ -1,13 +1,3 @@
-"""
-Daily Newspaper Agent — RSS Edition
-─────────────────────────────────────
-SETUP:
-1. pip install requests schedule python-dotenv
-2. Fill in your .env file
-3. python agent.py --now    → test immediately
-4. python agent.py          → runs daily at 7:00-7:30 AM
-"""
-
 import os, time, random, smtplib, logging, argparse, requests
 import xml.etree.ElementTree as ET
 from datetime import datetime
