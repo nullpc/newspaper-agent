@@ -11,14 +11,11 @@ SENDER_EMAIL   = os.getenv("SENDER_EMAIL")
 APP_PASSWORD   = os.getenv("APP_PASSWORD")
 RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 
-# ── RSS Feeds ─────────────────────────────────────────────────────────────────
-# Search-based URLs are stable and always return fresh real-time results
 RSS_FEEDS = {
     "Top India News":    "https://news.google.com/rss/search?q=India+news+today&hl=en-IN&gl=IN&ceid=IN:en",
     "Business & Economy":"https://news.google.com/rss/search?q=India+business+economy+market&hl=en-IN&gl=IN&ceid=IN:en",
-    "IPL & Cricket":     "https://news.google.com/rss/search?q=IPL+2026+cricket&hl=en-IN&gl=IN&ceid=IN:en",
     "Technology":        "https://news.google.com/rss/search?q=technology+AI+India&hl=en-IN&gl=IN&ceid=IN:en",
-    "Sports":            "https://news.google.com/rss/search?q=India+sports+today&hl=en-IN&gl=IN&ceid=IN:en",
+    "Sports":            "https://news.google.com/rss/search?q=India+sports+cricket+IPL+today&hl=en-IN&gl=IN&ceid=IN:en",
 }
 
 HEADERS = {
@@ -40,7 +37,6 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-# ── Fetch RSS ─────────────────────────────────────────────────────────────────
 SKIP_PHRASES = [
     "this feed is not available",
     "feed not available",
@@ -59,11 +55,9 @@ def fetch_rss(name: str, url: str, max_items: int = 8) -> list[dict]:
             link   = item.findtext("link",  "").strip()
             source = item.findtext("source", "").strip()
 
-            # Skip placeholder / error messages from Google News
             if any(p in title.lower() for p in SKIP_PHRASES):
                 continue
 
-            # Clean title — Google News appends "- Source Name" at the end
             if " - " in title:
                 title, source = title.rsplit(" - ", 1)
 
@@ -92,11 +86,9 @@ def fetch_all_news() -> dict:
         time.sleep(1)
     return all_news
 
-# ── Build HTML email ──────────────────────────────────────────────────────────
 COLORS = {
     "Top India News":    "#1a73e8",
     "Business & Economy":"#0f9d58",
-    "IPL & Cricket":     "#e8710a",
     "Technology":        "#9334e6",
     "Sports":            "#d93025",
 }
@@ -168,7 +160,6 @@ def build_html(all_news: dict) -> str:
 </td></tr></table>
 </body></html>"""
 
-# ── Send Email ────────────────────────────────────────────────────────────────
 def send_email(all_news: dict) -> None:
     if not SENDER_EMAIL or not APP_PASSWORD:
         log.error("Credentials missing — check .env file.")
@@ -189,7 +180,6 @@ def send_email(all_news: dict) -> None:
     except Exception as e:
         log.error(f"Email failed: {e}")
 
-# ── Main ──────────────────────────────────────────────────────────────────────
 def run_job():
     log.info("=" * 55)
     log.info("Newspaper Agent — job started")
