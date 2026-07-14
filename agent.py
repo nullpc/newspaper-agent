@@ -12,10 +12,24 @@ APP_PASSWORD   = os.getenv("APP_PASSWORD")
 RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 
 RSS_FEEDS = {
-    "Top India News":     "https://news.google.com/rss/search?q=India+news+today&hl=en-IN&gl=IN&ceid=IN:en",
-    "Business & Economy":"https://news.google.com/rss/search?q=India+business+economy+market&hl=en-IN&gl=IN&ceid=IN:en",
-    "Technology":        "https://news.google.com/rss/search?q=technology+AI+India&hl=en-IN&gl=IN&ceid=IN:en",
-    "Sports":            "https://news.google.com/rss/search?q=(F1+OR+Football+OR+Wimbledon+OR+Cricket)+India&hl=en-IN&gl=IN&ceid=IN:en",
+    "Top India News":      "https://news.google.com/rss/search?q=India+news+today&hl=en-IN&gl=IN&ceid=IN:en",
+    "Business & Economy": "https://news.google.com/rss/search?q=India+business+economy+market&hl=en-IN&gl=IN&ceid=IN:en",
+    "Technology":         "https://news.google.com/rss/search?q=technology+AI+India&hl=en-IN&gl=IN&ceid=IN:en",
+    # Split sports into individual feeds
+    "Motorsports & F1":   "https://news.google.com/rss/search?q=F1+Formula+1+India&hl=en-IN&gl=IN&ceid=IN:en",
+    "Football / Soccer":  "https://news.google.com/rss/search?q=Football+soccer+India&hl=en-IN&gl=IN&ceid=IN:en",
+    "Tennis & Wimbledon": "https://news.google.com/rss/search?q=Wimbledon+Tennis+India&hl=en-IN&gl=IN&ceid=IN:en",
+    "Cricket Updates":    "https://news.google.com/rss/search?q=Cricket+India&hl=en-IN&gl=IN&ceid=IN:en",
+}
+
+COLORS = {
+    "Top India News":      "#1a73e8",
+    "Business & Economy": "#0f9d58",
+    "Technology":         "#9334e6",
+    "Motorsports & F1":   "#e10600",  # F1 Red
+    "Football / Soccer":  "#00703c",  # Pitch Green
+    "Tennis & Wimbledon": "#006633",  # Wimbledon Green
+    "Cricket Updates":    "#d93025",  # Classic Red
 }
 
 HEADERS = {
