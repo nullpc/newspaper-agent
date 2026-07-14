@@ -12,10 +12,10 @@ APP_PASSWORD   = os.getenv("APP_PASSWORD")
 RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 
 RSS_FEEDS = {
-    "Top India News":    "https://news.google.com/rss/search?q=India+news+today&hl=en-IN&gl=IN&ceid=IN:en",
+    "Top India News":     "https://news.google.com/rss/search?q=India+news+today&hl=en-IN&gl=IN&ceid=IN:en",
     "Business & Economy":"https://news.google.com/rss/search?q=India+business+economy+market&hl=en-IN&gl=IN&ceid=IN:en",
     "Technology":        "https://news.google.com/rss/search?q=technology+AI+India&hl=en-IN&gl=IN&ceid=IN:en",
-    "Sports":            "https://news.google.com/rss/search?q=India+sports+cricket+IPL+today&hl=en-IN&gl=IN&ceid=IN:en",
+    "Sports":            "https://news.google.com/rss/search?q=(F1+OR+Football+OR+Wimbledon+OR+Cricket)+India&hl=en-IN&gl=IN&ceid=IN:en",
 }
 
 HEADERS = {
